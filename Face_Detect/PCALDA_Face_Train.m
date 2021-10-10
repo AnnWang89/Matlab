@@ -4,18 +4,18 @@ function [index,eigvalue,GlobalMean,projectPCA,prototypeFACE,eigvector,projectLD
 
 people = 40;
 
-withinsample = 5;%¨C­Ó¸ê®Æ¨ú´Xµ§
+withinsample = 5;%æ¯å€‹è³‡æ–™å–å¹¾ç­†
 
-principlenum = 50;%­°ºû­°¨ì50ºû
+principlenum = 50;%é™ç¶­é™åˆ°50ç¶­
 
-FACE = [];%¦s³QÅª¥X¨Óªº¸ê®Æ
+FACE = [];%å­˜è¢«è®€å‡ºä¾†çš„è³‡æ–™
 
 for k = 1:1:people
     
     for m=1:2:10
-        matchstring=['ORL3232' '\' num2str(k) '\' num2str(m) '.bmp'];%num2str§â¸Ì­±ªºnumber ÅÜstring
-        matchX=imread(matchstring);%matchX¬°¹ÏÀÉ¼Æ¦rµLªk­pºâ
-        matchX=double(matchX);%§ï¬°¥i­pºâ¼Æ¦r¡CmatchXºû¤@­Ó¯x°}32*32
+        matchstring=['ORL3232' '\' num2str(k) '\' num2str(m) '.bmp'];%num2stræŠŠè£¡é¢çš„number è®Šstring
+        matchX=imread(matchstring);%matchXç‚ºåœ–æª”æ•¸å­—ç„¡æ³•è¨ˆç®—
+        matchX=double(matchX);%æ”¹ç‚ºå¯è¨ˆç®—æ•¸å­—ã€‚matchXç¶­ä¸€å€‹çŸ©é™£32*32
         if (k==1 && m==1)
             [row,col]=size(matchX);
         end
@@ -43,7 +43,7 @@ SST = FACE'*FACE;
  
 [pca,latent] = eig(SST);
  
-eigvalue=diag(latent);  % extract the diagnal only(¡Ó¡Ñ????)
+eigvalue=diag(latent);  % extract the diagnal only(Â±Ã—????)
  
 [junk,index]= sort(eigvalue,'descend');
  
@@ -51,7 +51,7 @@ pca1=pca(:,index);
  
 eigvalue=eigvalue(index);
 projectPCA=pca1(:,1:50); % extract the principle component
-%projectPCA?¢X????¡Âx¢X
+%projectPCA?Â°????Â¯xÂ°
 %++++++++++++++++++++++++LDA transform ++++++++++++++++++++++
 pcaTotal =[];
 
@@ -62,11 +62,11 @@ for i=1:1:FACERow
 end
 
 for i=1:withinsample:withinsample*people
-    within=pcaTotal(i:i+withinsample-1,:);%¼È¦s³æ¤@Ãþ§OPCAªÅ¶¡¤¤°V½m¼v¹³
+    within=pcaTotal(i:i+withinsample-1,:);%æš«å­˜å–®ä¸€é¡žåˆ¥PCAç©ºé–“ä¸­è¨“ç·´å½±åƒ
     if(i==1)
         PeopleMean=mean(within);
         SW=within'*within; %SW=cov(within)
-        %¨C­Ó³£¥h¾ßmean,µM«áºâSW
+        %æ¯å€‹éƒ½åŽ»æ’¿mean,ç„¶å¾Œç®—SW
     end
     if(i>1)
         SW=SW+within'*within;    %SW=SW+cov(within)
