@@ -3,17 +3,17 @@ function [projectLDA,temp,ID,inc,FACE,rate]=PCALDA_Face_Test(GlobalMean,projectP
 
 people = 40;
 
-withinsample = 5;%¨C­Ó¸ê®Æ¨ú´Xµ§
-principlenum = 50;%­°ºû­°¨ì50ºû
+withinsample = 5;%æ¯å€‹è³‡æ–™å–å¹¾ç­†
+principlenum = 50;%é™ç¶­é™åˆ°50ç¶­
 inc=0;
-FACE = [];%¦s³QÅª¥X¨Óªº¸ê®Æ
-projectLDA=projectLDA(:,1:20);%­°ºû­°¨ì50ºû
+FACE = [];%å­˜è¢«è®€å‡ºä¾†çš„è³‡æ–™
+projectLDA=projectLDA(:,1:20);%é™ç¶­é™åˆ°50ç¶­
 for k = 1:1:people
     
     for m=2:2:10
-        matchstring=['ORL3232' '\' num2str(k) '\' num2str(m) '.bmp'];%num2str§â¸Ì­±ªºnumber ÅÜstring
-        matchX=imread(matchstring);%matchX¬°¹ÏÀÉ¼Æ¦rµLªk­pºâ
-        matchX=double(matchX);%§ï¬°¥i­pºâ¼Æ¦r¡CmatchXºû¤@­Ó¯x°}32*32
+        matchstring=['ORL3232' '\' num2str(k) '\' num2str(m) '.bmp'];%num2stræŠŠè£¡é¢çš„number è®Šstring
+        matchX=imread(matchstring);%matchXç‚ºåœ–æª”æ•¸å­—ç„¡æ³•è¨ˆç®—
+        matchX=double(matchX);%æ”¹ç‚ºå¯è¨ˆç®—æ•¸å­—ã€‚matchXç¶­ä¸€å€‹çŸ©é™£32*32
         if (k==1 && m==2)
             [row,col]=size(matchX);
         end
